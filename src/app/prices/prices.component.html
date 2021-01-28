@@ -1,0 +1,32 @@
+<h2>Price List</h2>
+
+<table class="table table-hover table-sm table-bordered">
+    <caption>List of price</caption>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Product Id</th>
+        <th scope="col">Brand Id</th>
+        <th scope="col">Start date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Price List</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Price</th>
+        <th scope="col">Currency</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let price of prices">
+          <th scope="row">1</th>
+         <td>{{price.productId}}</td>
+         <td>{{price.brandId}}</td>
+         <td>{{price.startDate}}</td>
+         <td>{{price.endDate}}</td>
+         <td>{{price.priceList}}</td>
+         <td>{{price.priority}}</td>
+         <td>{{price.price}}</td>
+         <td>{{price.currency}}</td>       
+      </tr>
+    </tbody>
+  </table>
