@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService, Prices } from '../rest.service';
+import { RestService } from '../rest.service';
+import { Price } from './../prices/prices';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PricesSearchComponent implements OnInit {
 
-  prices: Prices[] = [];
+  prices: Price[] = [];
 
   constructor(
     public rest: RestService,

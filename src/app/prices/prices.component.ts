@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService, Prices } from '../rest.service';
+import { RestService} from './../rest.service';
+import { Price } from './prices';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-prices',
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class PricesComponent implements OnInit {
 
-  prices: Prices[] = [];
+  prices: Price[] = [];
 
   constructor(
     public restService: RestService,
@@ -18,7 +18,8 @@ export class PricesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.restService.getPrices();
+    this.restService.getPrices().subscribe(prices => this.prices = prices);
+    
   }
 
 

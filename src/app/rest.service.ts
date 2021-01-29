@@ -6,19 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SafePrice } from './safePrice.interface';
-
-export interface Prices {
-  id: number,
-  brandId: number,
-  startDate: string,
-  endDate: string,
-  priceList: number,
-  productId: number,
-  priority: number,
-  price: number,
-  currency: string
-}
-
+import { Price } from './prices/prices';
 
 const endpoint = 'http://localhost:8080/api/';
 @Injectable({
@@ -30,14 +18,14 @@ export class RestService {
     console.log("Servicio inyectado")
    }
   
-  getPrices() {
+  getPrices(): Observable<Price[]> {
     let header = new HttpHeaders().set('Type-content', 'aplication/json');
-    return this.http.get(endpoint + 'prices').subscribe(data => {console.log(data)})
+    return this.http.get<Price[]>(endpoint + 'prices');
   }
 
   searchPrices(productId: number, brandId: number, date: string): Observable<any> {
     let headers = new HttpHeaders().set('Type-content', 'aplication/json').set('Access-Control-Allow-Origin', '*');
-    return this.http.get<Prices[]>(endpoint + 'prices/' + productId + '/' + brandId + '/' + date).pipe(
+    return this.http.get<Price[]>(endpoint + 'prices/' + productId + '/' + brandId + '/' + date).pipe(
       map(data => {
         const mySearchPrices = data.map(mySearchPrices => this.searchPrices(productId,brandId,date));
         console.log(mySearchPrices);
